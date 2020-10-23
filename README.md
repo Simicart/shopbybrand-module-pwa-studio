@@ -1,2 +1,1 @@
-# shopbybrand-module-pwa-studio
-ShopByBrand Module for Magento pwa-studio Venia Concept
+Documentation for Magento PWA Studio packages is located at [https://pwastudio.io](https://pwastudio.io).
