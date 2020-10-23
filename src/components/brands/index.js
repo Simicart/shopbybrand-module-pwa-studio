@@ -28,56 +28,53 @@ const Brands = () => {
     if (derivedErrorMessage)
         return <div className={classes.brandError}>{derivedErrorMessage}</div>;
 
-    const brandListItems = useMemo(() => {
-        if (brandsList && brandsList.length) {
-            return brandsList.map(
-                item => {
-                    const urlKey = '/brand/' + (item.url_key ? item.url_key : item.default_value.toLowerCase()) + '.html';
-                    return (
-                        <div key={item.brand_id} className={classes.brandItem}>
-                            <Link to={urlKey} >
-                                <div className={classes.brandItemImageWrapper} style={{backgroundImage: `url("${item.image}")`}} ></div>
+    let brandListItems
+    if (brandsList && brandsList.length) {
+        brandListItems = brandsList.map(
+            item => {
+                const urlKey = '/brand/' + (item.url_key ? item.url_key : item.default_value.toLowerCase()) + '.html';
+                return (
+                    <div key={item.brand_id} className={classes.brandItem}>
+                        <Link to={urlKey} >
+                            <div className={classes.brandItemImageWrapper} style={{ backgroundImage: `url("${item.image}")` }} ></div>
+                        </Link>
+                        <div className={classes.brandItemInfo}>
+                            <Link className={classes.brandItemLink} to={urlKey}>
+                                {item.default_value}
                             </Link>
-                            <div className={classes.brandItemInfo}>
-                                <Link className={classes.brandItemLink} to={urlKey}>
-                                    {item.default_value}
-                                </Link>
-                            </div>
                         </div>
-                    )
-                }
-            )
-        } else {
-            return (
-                <div className={classes.brandError}>
-                    <FormattedMessage
-                        id={'brand.NoBrandFound'}
-                        defaultMessage={'No Brand Found'}
-                    />
-                </div>
-            )
-        }
-    }, [brandsList])
+                    </div>
+                )
+            }
+        )
+    } else {
+        brandListItems = (
+            <div className={classes.brandError}>
+                <FormattedMessage
+                    id={'brand.NoBrandFound'}
+                    defaultMessage={'No Brand Found'}
+                />
+            </div>
+        )
+    }
 
-    const dictionaryOptions = useMemo(() => {
-        return "abcdefghijklmnopqrstuvwxyz".split('').map(
-            dictionaryOption => (
-                <div
-                    key={dictionaryOption}
-                    onClick={
-                        () => {
-                            if (availableChars.indexOf(dictionaryOption) !== -1) {
-                                setStartWith(dictionaryOption)
-                            }
+    const dictionaryOptions = "abcdefghijklmnopqrstuvwxyz".split('').map(
+        dictionaryOption => (
+            <div
+                key={dictionaryOption}
+                onClick={
+                    () => {
+                        if (availableChars.indexOf(dictionaryOption) !== -1) {
+                            setStartWith(dictionaryOption)
                         }
                     }
-                    className={`${classes.dictOption} ${(dictionaryOption === startWith) && classes.selected} ${(availableChars.indexOf(dictionaryOption) === -1) && classes.disabled}`}
-                >
-                    {dictionaryOption.toUpperCase()}
-                </div>
-            )
+                }
+                className={`${classes.dictOption} ${(dictionaryOption === startWith) && classes.selected} ${(availableChars.indexOf(dictionaryOption) === -1) && classes.disabled}`}
+            >
+                {dictionaryOption.toUpperCase()}
+            </div>
         )
-    }, [availableChars])
+    )
 
     return (
         <div className={classes.brandPageRoot}>

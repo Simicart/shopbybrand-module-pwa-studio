@@ -9,6 +9,7 @@ export const useBrands = props => {
         loading: brandsLoading,
         error: brandsError
     } = useQuery(GET_BRANDS_LIST, {
+        fetchPolicy: 'cache-and-network',
         variables: {
             pageSize: 99999,
             currentPage: 1
@@ -41,7 +42,7 @@ export const useBrands = props => {
             const filteredItems = []
             brandItems.map(
                 brandItem => {
-                    if (startWith) {
+                    if (startWith && brandItem.url_key) {
                         if (brandItem.default_value.toLowerCase()[0] !== startWith)
                             return
                     }
@@ -58,7 +59,8 @@ export const useBrands = props => {
         let availableChars = ''
         if (brandsData && brandsData.mpbrand && brandsData.mpbrand.items) {
             brandsData.mpbrand.items.map(brandItem => {
-                availableChars += brandItem.default_value.toLowerCase()[0]
+                if (brandItem.url_key)
+                    availableChars += brandItem.default_value.toLowerCase()[0]
             })
         }
         return availableChars
@@ -73,7 +75,10 @@ export const useBrands = props => {
             brandItems.map(
                 brandItem => {
                     if (brandSearchString) {
-                        if (brandItem.default_value.toLowerCase().indexOf(brandSearchString.toLowerCase()) !== -1)
+                        if (
+                            (brandItem.default_value.toLowerCase().indexOf(brandSearchString.toLowerCase()) !== -1) &&
+                            brandItem.url_key
+                        )
                             searchedItems.push(brandItem)
                     }
                 }

@@ -21,3 +21,29 @@ const BrandDetails = () => {
 }
 
 export default BrandDetails;
+
+// import React from "react";
+// import { useParams } from "react-router-dom";
+// import { useBrandDetails } from '../../talons/useBrandDetails';
+// import defaultClasses from './branddetails.css'
+
+// const BrandDetails = () => {
+//     const classes = defaultClasses
+//     const { urlKey = "brandUrl" } = useParams();
+//     const { brandData, brandLoading, derivedErrorMessage } = useBrandDetails({ url_key: urlKey });
+
+//     if (brandLoading)
+//         return fullPageLoadingIndicator;
+
+//     if (derivedErrorMessage)
+//         return <div className={classes.brandError}>{derivedErrorMessage}</div>;
+
+//         console.log(brandData)
+
+//     return (
+//         <div>
+//         </div>
+//     );
+// }
+
+// export default BrandDetails;
