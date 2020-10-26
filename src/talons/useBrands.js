@@ -2,17 +2,33 @@ import { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_BRANDS_LIST } from './Brand.gql'
 
+
+const checkValidCateId = (categoryId, brandItem) => {
+    let matchedCate = false
+    if (brandItem.mpbrandCategories && brandItem.mpbrandCategories.length) {
+        brandItem.mpbrandCategories.map(mpbrandCategory => {
+            if (parseInt(mpbrandCategory.cat_id) === parseInt(categoryId))
+                matchedCate = true
+        })
+    }
+    return matchedCate
+}
+
 export const useBrands = props => {
+    const { categoryId } = props
     //get Brand List useQuery
+    const variables = {
+        pageSize: 99999,
+        currentPage: 1
+    }
     const {
         data: brandsData,
         loading: brandsLoading,
         error: brandsError
     } = useQuery(GET_BRANDS_LIST, {
-        fetchPolicy: 'cache-and-network',
         variables: {
             pageSize: 99999,
-            currentPage: 1
+            currentPage: 1,
         }
     });
 
@@ -38,10 +54,15 @@ export const useBrands = props => {
     //filter brands by dictionary
     const brandsList = useMemo(() => {
         if (brandsData && brandsData.mpbrand && brandsData.mpbrand.items) {
-            const brandItems = brandsData.mpbrand.items
+            let brandItems = brandsData.mpbrand.items
+
             const filteredItems = []
             brandItems.map(
                 brandItem => {
+                    if (categoryId) {
+                        if (!checkValidCateId(categoryId, brandItem))
+                            return
+                    }
                     if (startWith && brandItem.url_key) {
                         if (brandItem.default_value.toLowerCase()[0] !== startWith)
                             return
@@ -59,6 +80,10 @@ export const useBrands = props => {
         let availableChars = ''
         if (brandsData && brandsData.mpbrand && brandsData.mpbrand.items) {
             brandsData.mpbrand.items.map(brandItem => {
+                if (categoryId) {
+                    if (!checkValidCateId(categoryId, brandItem))
+                        return
+                }
                 if (brandItem.url_key)
                     availableChars += brandItem.default_value.toLowerCase()[0]
             })
@@ -73,6 +98,10 @@ export const useBrands = props => {
             const searchedItems = []
             brandItems.map(
                 brandItem => {
+                    if (categoryId) {
+                        if (!checkValidCateId(categoryId, brandItem))
+                            return
+                    }
                     if (brandSearchString) {
                         if (
                             (brandItem.default_value.toLowerCase().indexOf(brandSearchString.toLowerCase()) !== -1) &&

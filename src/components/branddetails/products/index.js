@@ -172,14 +172,10 @@ Products.propTypes = {
         root: string,
         title: string
     }),
-    id: number,
     pageSize: number
 };
 
 Products.defaultProps = {
-    id: 3,
-    // TODO: This can be replaced by the value from `storeConfig when the PR,
-    // https://github.com/magento/graphql-ce/pull/650, is released.
     pageSize: 6
 };
 

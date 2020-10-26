@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBdetailsCategories } from '../../talons/useBdetailsCategories'
+import { useBrandCategory } from '../../talons/useBrandCategory'
 import { FormattedMessage } from 'react-intl';
 import { Link } from '@magento/venia-drivers';
 
@@ -7,7 +7,7 @@ const BdetailsCategories = props => {
     const { classes } = props
     const {
         categoryData
-    } = useBdetailsCategories()
+    } = useBrandCategory()
     if (!categoryData || !categoryData.mpbrandCategories || !categoryData.mpbrandCategories.length)
         return ''
     const { mpbrandCategories } = categoryData

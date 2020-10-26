@@ -9,7 +9,6 @@ export const useBrandDetails = props => {
         loading: brandLoading,
         error: brandError
     } = useQuery(GET_BRANDS_BY_URL, {
-        fetchPolicy: 'cache-and-network',
         variables: {
             url_key: url_key
         }

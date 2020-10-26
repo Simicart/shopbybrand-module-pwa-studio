@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 
-
 export const BrandFragment = gql`
     fragment BrandFragment on MageplazaBrands {
         brand_id
@@ -20,6 +19,26 @@ export const BrandFragment = gql`
         meta_keywords
         meta_description
     }
+`
+
+export const CategoryFragment = gql`
+    fragment CategoryFragment on MageplazaBrandsCategories {
+        cat_id
+        status
+        store_ids
+        name
+        url_key
+        meta_title
+        meta_keywords
+        meta_description
+        meta_robots
+        created_at
+        updated_at
+        mpbrand {
+            ...BrandFragment
+        }
+    }
+    ${BrandFragment}
 `
 
 export const GET_BRANDS_LIST = gql`
@@ -70,21 +89,8 @@ export const GET_BRANDS_BY_URL = gql`
 export const GET_BRANDS_CATEGORY = gql`
     query mpbrandCategories {
         mpbrandCategories {
-            cat_id
-            status
-            store_ids
-            name
-            url_key
-            meta_title
-            meta_keywords
-            meta_description
-            meta_robots
-            created_at
-            updated_at
-            mpbrand {
-                ...BrandFragment
-            }
+            ...CategoryFragment
         }
     }
-    ${BrandFragment}
+    ${CategoryFragment}
 `;

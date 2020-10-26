@@ -7,7 +7,8 @@ import defaultClasses from './brands.css'
 import Icon from '@magento/venia-ui/lib/components/Icon';
 import { Search as SearchIcon } from 'react-feather';
 
-const Brands = () => {
+const Brands = props => {
+    const { categoryId, categoryName } = props
     const {
         brandsList,
         brandsLoading,
@@ -18,7 +19,7 @@ const Brands = () => {
         brandSearchString,
         setBrandSearchString,
         brandSearchResult
-    } = useBrands();
+    } = useBrands({ categoryId });
 
     const classes = defaultClasses;
 
@@ -81,7 +82,13 @@ const Brands = () => {
             <div className={classes.breadCrumb}>
                 <Link className={classes.breadCrumbLink} to="/">{`Home`}</Link>
                 <span className={classes.breadCrumbSeparator}>{`/`}</span>
-                <span className={classes.breadCrumbText}>{`Brands`}</span>
+                {categoryName ? (
+                    <React.Fragment>
+                        <Link className={classes.breadCrumbLink} to="/brand.html">{`Brands`}</Link>
+                        <span className={classes.breadCrumbSeparator}>{`/`}</span>
+                        <span className={classes.breadCrumbText}>{categoryName}</span>
+                    </React.Fragment>
+                ) : <span className={classes.breadCrumbText}>{`Brands`}</span>}
             </div>
             <div className={classes.brandPageHeader}>
                 <div className={classes.brandPageTitle}>
