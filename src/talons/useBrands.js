@@ -17,10 +17,6 @@ const checkValidCateId = (categoryId, brandItem) => {
 export const useBrands = props => {
     const { categoryId } = props
     //get Brand List useQuery
-    const variables = {
-        pageSize: 99999,
-        currentPage: 1
-    }
     const {
         data: brandsData,
         loading: brandsLoading,
