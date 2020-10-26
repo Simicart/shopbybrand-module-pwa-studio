@@ -3,7 +3,7 @@
 ## 1. Prepare your Magento site
 If you are using your own magento site, make sure it's:
 - Magento 2.4.* or >= 2.3.5
-- Got Mageplaz Shopbybrand and ShopbybrandGraphQl installed
+- Got Mageplaza Shopbybrand and ShopbybrandGraphQl installed
 
 ## 2. Start the project
 
