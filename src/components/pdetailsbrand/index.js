@@ -1,5 +1,5 @@
 import React from 'react';
-import { resourceUrl, useHistory } from '@magento/venia-drivers';
+import { resourceUrl } from '@magento/venia-drivers';
 import classes from './pdetailsbrand.css';
 import { Link } from '@magento/venia-drivers';
 

@@ -5,7 +5,7 @@ module.exports = targets => {
     targets.of("@magento/venia-ui").routes.tap(routes => {
         routes.push({
             name: "BrandCategory",
-            pattern: "brand/category/:brandUrl?",
+            pattern: "/brand/category/:categoryUrl?",
             path: require.resolve("../components/category/index.js")
         });
         routes.push({

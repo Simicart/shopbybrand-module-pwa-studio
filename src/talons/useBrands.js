@@ -69,7 +69,6 @@ export const useBrands = props => {
     //filter brands by search
     const brandSearchResult = useMemo(() => {
         if (brandsData && brandsData.mpbrand && brandsData.mpbrand.items) {
-            console.log(brandSearchString)
             const brandItems = brandsData.mpbrand.items
             const searchedItems = []
             brandItems.map(
