@@ -113,7 +113,9 @@ const Brands = props => {
                             <div className={classes.searchResult}>
                                 {brandSearchResult.map(
                                     searchItem => (
-                                        <div key={searchItem.brand_id} className={classes.searchItem}>
+                                        <Link key={searchItem.brand_id}
+                                            className={classes.searchItem}
+                                            to={`/brand/${searchItem.url_key}.html`}>
                                             <div className={classes.searchItemPhotoWrapper}>
                                                 <img className={classes.searchItemPhoto} src={searchItem.image} alt={searchItem.default_value} />
                                             </div>
@@ -121,7 +123,7 @@ const Brands = props => {
                                                 <div className={classes.searchItemName} >{searchItem.default_value}</div>
                                                 <div className={classes.searchItemDesc}>{searchItem.short_description}</div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     )
                                 )}
                             </div> : ''
