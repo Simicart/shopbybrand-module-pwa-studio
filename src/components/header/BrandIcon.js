@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '@magento/venia-ui/lib/components/Icon';
 import { Tag as TagIcon } from 'react-feather';
 import { resourceUrl, useHistory } from '@magento/venia-drivers';
-import classes from './brandIcon.css';
+import classes from './brandicon.css';
 import { FormattedMessage, useIntl } from 'react-intl';
 
 const BrandIcon = () => {
