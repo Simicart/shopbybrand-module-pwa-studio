@@ -13,14 +13,14 @@ const BrandIcon = () => {
         <button
             aria-label={formatMessage({
                 id: 'brand.brandLabel',
-                defaultMessage: 'Brand'
+                defaultMessage: 'Brands'
             })}
             className={classes.root}
             onClick={() => history.push(resourceUrl('/brand.html'))}
         >
             <Icon src={TagIcon} />
             <span className={classes.label}>
-                <FormattedMessage id={'Brand'} />
+                <FormattedMessage id={'Brands'} />
             </span>
         </button>
     )

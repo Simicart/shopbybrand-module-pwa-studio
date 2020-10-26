@@ -1,0 +1,26 @@
+.pdetailsBrandSection {
+    border-color: rgb(var(--venia-global-color-border));
+    border-style: solid;
+    border-width: 0 0 1px;
+    margin: 0 1.5rem;
+    padding: 1.5rem 0;
+}
+.pdetailsBrandInfo {
+    display: flex;
+}
+.pdetailsBrandImage {
+    width: 50px;
+    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    display: inline-block;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.pdetailsBrandLabel {
+    margin-inline-start: 10px;
+    display: inline-block;
+    margin-top: 17px;
+    font-size: 15px;
+}

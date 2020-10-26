@@ -4,6 +4,11 @@ const moduleOverridePlugin = require('./moduleOverrideWebpackPlugin');
 module.exports = targets => {
     targets.of("@magento/venia-ui").routes.tap(routes => {
         routes.push({
+            name: "BrandCategory",
+            pattern: "brand/category/:brandUrl?",
+            path: require.resolve("../components/category/index.js")
+        });
+        routes.push({
             name: "BrandDetails",
             pattern: "/brand/:brandUrl?",
             path: require.resolve("../components/branddetails/index.js")

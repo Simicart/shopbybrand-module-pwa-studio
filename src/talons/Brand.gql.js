@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 
-const BrandFragment = gql`
+export const BrandFragment = gql`
     fragment BrandFragment on MageplazaBrands {
         brand_id
         attribute_id
