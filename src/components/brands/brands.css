@@ -175,6 +175,7 @@
     background-repeat: no-repeat;
 }
 .brandItemInfo {
+    margin-top: 5px;
     text-align: center;
     font-size: 15px;
 }

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { GET_BRANDS_BY_URL } from './Brand.gql'
+import { GET_BRANDS_BY_URL } from './Brand.gql';
 
 export const useBrandDetails = props => {
     const { url_key } = props
