@@ -30,21 +30,54 @@ const Brands = props => {
     if (derivedErrorMessage)
         return <div className={classes.brandError}>{derivedErrorMessage}</div>;
 
+    let displayOption = 1 // 1 -logo and label, 0 - logo only, 2 - label only
+    let brand_list_logo_height = 150
+    let brand_list_logo_width = 150
+    let showAlphabet = false
+    if (brandConfiguration) {
+        displayOption = parseInt(brandConfiguration.display_option)
+        brand_list_logo_height = brandConfiguration.brand_list_logo_height ? brandConfiguration.brand_list_logo_height : 150
+        brand_list_logo_width = brandConfiguration.brand_list_logo_width ? brandConfiguration.brand_list_logo_width : 150
+        if (brandConfiguration.brandlist_style === 1)
+            showAlphabet = true
+    }
+
     let brandListItems
     if (brandsList && brandsList.length) {
-        brandListItems = brandsList.map(
+        brandListItems = []
+        let currentChar = ''
+        brandsList.map(
             item => {
-                const urlKey = '/brand/' + (item.url_key ? item.url_key : item.default_value.toLowerCase()) + '.html';
-                return (
-                    <div key={item.brand_id} className={classes.brandItem}>
-                        <Link to={urlKey} >
-                            <div className={classes.brandItemImageWrapper} style={{ backgroundImage: `url("${item.image}")` }} ></div>
-                        </Link>
-                        <div className={classes.brandItemInfo}>
-                            <Link className={classes.brandItemLink} to={urlKey}>
-                                {item.default_value}
-                            </Link>
+                if (showAlphabet && (!currentChar || currentChar !== item.default_value.toLowerCase()[0] !== startWith)) {
+                    currentChar = item.default_value.toLowerCase()[0]
+                    brandListItems.push(
+                        <div className={classes.alphabetHeader}>
+                            {currentChar}
                         </div>
+                    )
+                }
+                const urlKey = '/brand/' + (item.url_key ? item.url_key : item.default_value.toLowerCase()) + '.html';
+                brandListItems.push(
+                    <div key={item.brand_id} className={classes.brandItem} style={{ flexBasis: `${brand_list_logo_width + 10}px` }}>
+                        {
+                            (displayOption === 1 || displayOption === 0) &&
+                            <Link to={urlKey} >
+                                <div className={classes.brandItemImageWrapper}
+                                    style={{
+                                        backgroundImage: `url("${item.image}")`,
+                                        width: brand_list_logo_width,
+                                        height: brand_list_logo_width
+                                    }} ></div>
+                            </Link>
+                        }
+                        {
+                            (displayOption === 1 || displayOption === 2) &&
+                            <div className={classes.brandItemInfo}>
+                                <Link className={classes.brandItemLink} to={urlKey}>
+                                    {item.default_value}
+                                </Link>
+                            </div>
+                        }
                     </div>
                 )
             }

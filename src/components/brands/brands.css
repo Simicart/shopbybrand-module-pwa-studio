@@ -146,20 +146,24 @@
 }
 
 .brandListContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
     margin-bottom: 30px;
     padding: 5px 15px;
+    justify-content: start;
 }
 
-@media (min-width: 961px) {
-    .brandListContent {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    }
+.alphabetHeader {
+    padding-top: 10px;
+    border-top: 1px solid #eaeaea;
+    width: 100%;
+    font-size: 20px;
+    text-transform: uppercase;
 }
+
 .brandItem {
     padding: 10px 5px 20px;
+    margin-inline-end: 15px;
 }
 .brandItem:hover{
     border: solid 1px #dfdfdf;
