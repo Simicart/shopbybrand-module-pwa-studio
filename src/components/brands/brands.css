@@ -155,7 +155,7 @@
 
 @media (min-width: 961px) {
     .brandListContent {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 }
 .brandItem {

@@ -18,7 +18,8 @@ const Brands = props => {
         availableChars,
         brandSearchString,
         setBrandSearchString,
-        brandSearchResult
+        brandSearchResult,
+        brandConfiguration
     } = useBrands({ categoryId });
 
     const classes = defaultClasses;
@@ -71,12 +72,18 @@ const Brands = props => {
                     }
                 }
                 className={`${classes.dictOption} ${(dictionaryOption === startWith) && classes.selected} ${(availableChars.indexOf(dictionaryOption) === -1) && classes.disabled}`}
+                style={{
+                    backgroundColor: (availableChars.indexOf(dictionaryOption) !== -1 || (dictionaryOption === startWith)) ?
+                        ((brandConfiguration && brandConfiguration.color) ? brandConfiguration.color : `#0ed08e`) :
+                        `white`
+                }}
             >
                 {dictionaryOption.toUpperCase()}
             </div>
         )
     )
-
+    const listTitle = (brandConfiguration && brandConfiguration.brand_list_name) ? brandConfiguration.brand_list_name : `Brands`
+    console.log(brandConfiguration)
     return (
         <div className={classes.brandPageRoot}>
             <div className={classes.breadCrumb}>
@@ -84,18 +91,18 @@ const Brands = props => {
                 <span className={classes.breadCrumbSeparator}>{`/`}</span>
                 {categoryName ? (
                     <React.Fragment>
-                        <Link className={classes.breadCrumbLink} to="/brand.html">{`Brands`}</Link>
+                        <Link className={classes.breadCrumbLink} to="/brand.html">{listTitle}</Link>
                         <span className={classes.breadCrumbSeparator}>{`/`}</span>
                         <span className={classes.breadCrumbText}>{categoryName}</span>
                     </React.Fragment>
-                ) : <span className={classes.breadCrumbText}>{`Brands`}</span>}
+                ) : <span className={classes.breadCrumbText}>{listTitle}</span>}
             </div>
-            <div className={classes.brandPageHeader}>
+            <div className={classes.brandPageHeader} style={{ backgroundColor: (brandConfiguration && brandConfiguration.color) ? brandConfiguration.color : `#0ed08e` }}>
                 <div className={classes.brandPageTitle}>
                     <strong>
                         <FormattedMessage
                             id={'brand.Brands'}
-                            defaultMessage={'Brands'}
+                            defaultMessage={listTitle}
                         />
                     </strong>
                 </div>
@@ -134,6 +141,7 @@ const Brands = props => {
                 <div
                     key="all"
                     onClick={() => setStartWith('')}
+                    style={{ backgroundColor: (brandConfiguration && brandConfiguration.color) ? brandConfiguration.color : `#0ed08e` }}
                     className={`${classes.dictOption} ${!startWith && classes.selected}`}
                 >{`All`}</div>
                 {dictionaryOptions}
