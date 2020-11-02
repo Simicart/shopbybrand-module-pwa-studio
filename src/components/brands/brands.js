@@ -30,16 +30,20 @@ const Brands = props => {
     if (derivedErrorMessage)
         return <div className={classes.brandError}>{derivedErrorMessage}</div>;
 
-    let displayOption = 1 // 1 -logo and label, 0 - logo only, 2 - label only
-    let brand_list_logo_height = 150
-    let brand_list_logo_width = 150
-    let showAlphabet = false
+    let displayOption = 1; // 1 -logo and label, 0 - logo only, 2 - label only
+    let brand_list_logo_height = 150;
+    let brand_list_logo_width = 150;
+    let showAlphabet = false;
+    let show_description = false;
+    let show_product_qty = false;
     if (brandConfiguration) {
         displayOption = parseInt(brandConfiguration.display_option)
         brand_list_logo_height = brandConfiguration.brand_list_logo_height ? brandConfiguration.brand_list_logo_height : 150
         brand_list_logo_width = brandConfiguration.brand_list_logo_width ? brandConfiguration.brand_list_logo_width : 150
         if (brandConfiguration.brandlist_style === 1)
-            showAlphabet = true
+            showAlphabet = true;
+        if (brandConfiguration.show_description)
+            show_description = true;
     }
 
     let brandListItems
@@ -76,6 +80,7 @@ const Brands = props => {
                                 <Link className={classes.brandItemLink} to={urlKey}>
                                     {item.default_value}
                                 </Link>
+                                {!!(show_description && item.short_description) && <div className={classes.listItemSortDescription}>{item.short_description}</div>}
                             </div>
                         }
                     </div>
@@ -116,7 +121,6 @@ const Brands = props => {
         )
     )
     const listTitle = (brandConfiguration && brandConfiguration.brand_list_name) ? brandConfiguration.brand_list_name : `Brands`
-    console.log(brandConfiguration)
     return (
         <div className={classes.brandPageRoot}>
             <div className={classes.breadCrumb}>

@@ -5,7 +5,6 @@ import { Util } from '@magento/peregrine';
 const { BrowserPersistence } = Util;
 const storage = new BrowserPersistence();
 
-
 const checkValidCateId = (categoryId, brandItem) => {
     let matchedCate = false
     if (brandItem.mpbrandCategories && brandItem.mpbrandCategories.length) {
