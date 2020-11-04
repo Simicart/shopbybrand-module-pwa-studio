@@ -52,7 +52,7 @@ const Brands = props => {
         let currentChar = ''
         brandsList.map(
             item => {
-                if (showAlphabet && (!currentChar || currentChar !== item.default_value.toLowerCase()[0] !== startWith)) {
+                if (showAlphabet && (!currentChar || (currentChar !== item.default_value.toLowerCase()[0]))) {
                     currentChar = item.default_value.toLowerCase()[0]
                     brandListItems.push(
                         <div className={classes.alphabetHeader}>
