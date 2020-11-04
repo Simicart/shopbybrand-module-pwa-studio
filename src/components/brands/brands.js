@@ -53,12 +53,12 @@ const Brands = props => {
         brandsList.map(
             item => {
                 if (showAlphabet && (!currentChar || (currentChar !== item.default_value.toLowerCase()[0]))) {
-                    currentChar = item.default_value.toLowerCase()[0]
+                    currentChar = item.default_value.toLowerCase()[0];
                     brandListItems.push(
-                        <div className={classes.alphabetHeader}>
+                        <div className={classes.alphabetHeader} key={`char` + currentChar}>
                             {currentChar}
                         </div>
-                    )
+                    );
                 }
                 const urlKey = '/brand/' + (item.url_key ? item.url_key : item.default_value.toLowerCase()) + '.html';
                 brandListItems.push(
@@ -156,19 +156,22 @@ const Brands = props => {
                         brandSearchResult.length ?
                             <div className={classes.searchResult}>
                                 {brandSearchResult.map(
-                                    searchItem => (
-                                        <Link key={searchItem.brand_id}
-                                            className={classes.searchItem}
-                                            to={`/brand/${searchItem.url_key}.html`}>
-                                            <div className={classes.searchItemPhotoWrapper}>
-                                                <img className={classes.searchItemPhoto} src={searchItem.image} alt={searchItem.default_value} />
-                                            </div>
-                                            <div className={classes.searchItemInfo}>
-                                                <div className={classes.searchItemName} >{searchItem.default_value}</div>
-                                                <div className={classes.searchItemDesc}>{searchItem.short_description}</div>
-                                            </div>
-                                        </Link>
-                                    )
+                                    searchItem => {
+                                        console.log(searchItem)
+                                        return (
+                                            <Link key={searchItem.brand_id}
+                                                className={classes.searchItem}
+                                                to={`/brand/${searchItem.url_key}.html`}>
+                                                <div className={classes.searchItemPhotoWrapper}>
+                                                    <img className={classes.searchItemPhoto} src={searchItem.image} alt={searchItem.default_value} />
+                                                </div>
+                                                <div className={classes.searchItemInfo}>
+                                                    <div className={classes.searchItemName} >{searchItem.default_value}</div>
+                                                    <div className={classes.searchItemDesc}>{searchItem.short_description}</div>
+                                                </div>
+                                            </Link>
+                                        )
+                                    }
                                 )}
                             </div> : ''
                     }

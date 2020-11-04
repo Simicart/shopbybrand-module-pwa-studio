@@ -84,6 +84,7 @@
 }
 .searchItem {
     padding: 4px 9px;
+    margin-inline-end: 9px;
     white-space: nowrap;
     overflow: hidden;
     display: flex;
@@ -92,6 +93,7 @@
 .searchItemPhotoWrapper {
     width: 70px;
     max-width: 70px;
+    min-width: 70px;
 }
 .searchItemPhoto {
     width: 100%;
@@ -112,7 +114,6 @@
     color: #333333;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 .dictList {
     margin-top: 20px;
