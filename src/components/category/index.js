@@ -13,10 +13,12 @@ const Category = props => {
         return fullPageLoadingIndicator;
 
     if (!categoryData || !categoryData.mpbrandCategories || !categoryData.mpbrandCategories.length)
-        return <FormattedMessage
-            id={'brand.NoCategoryFound'}
-            defaultMessage={'Cannot find category'}
-        />
+        return (
+            <FormattedMessage
+                id={'brand.NoCategoryFound'}
+                defaultMessage={'Cannot find category'}
+            />
+        )
 
     const urlKeyToFind = categoryUrl.replace('.html', '');
     let categoryInfo;
