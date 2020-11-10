@@ -14,7 +14,6 @@ const Pdetailsbrand = props => {
     if (!brandConfiguration || !brandConfiguration.show_brand_info)
         return ''
 
-        console.log(brandConfiguration)
     const {
         show_brand_info, logo_width_on_product_page, logo_height_on_product_page
     } = brandConfiguration;

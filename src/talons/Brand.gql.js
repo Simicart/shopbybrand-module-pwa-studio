@@ -18,6 +18,7 @@ export const BrandFragment = gql`
         meta_title
         meta_keywords
         meta_description
+        product_quantity
     }
 `
 

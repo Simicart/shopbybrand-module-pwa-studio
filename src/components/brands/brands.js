@@ -44,6 +44,8 @@ const Brands = props => {
             showAlphabet = true;
         if (brandConfiguration.show_description)
             show_description = true;
+        if (brandConfiguration.show_product_qty)
+            show_product_qty = brandConfiguration.show_product_qty
     }
 
     let brandListItems
@@ -78,7 +80,7 @@ const Brands = props => {
                             (displayOption === 1 || displayOption === 2) &&
                             <div className={classes.brandItemInfo}>
                                 <Link className={classes.brandItemLink} to={urlKey}>
-                                    {item.default_value}
+                                    {item.default_value} {show_product_qty ? `(${item.product_quantity})` : ''}
                                 </Link>
                                 {!!(show_description && item.short_description) && <div className={classes.listItemSortDescription}>{item.short_description}</div>}
                             </div>
@@ -157,7 +159,6 @@ const Brands = props => {
                             <div className={classes.searchResult}>
                                 {brandSearchResult.map(
                                     searchItem => {
-                                        console.log(searchItem)
                                         return (
                                             <Link key={searchItem.brand_id}
                                                 className={classes.searchItem}
