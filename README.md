@@ -13,10 +13,9 @@ End result: https://shopbybrand.pwa-commerce.com/brand.html
 
 ### 1. Init project
 ```
-npm init @magento/pwa@1.1.2
+  git clone https://github.com/Simicart/simi-studio --branch release/2.0.0
+  cd simi-studio
 ```
-
-Fill in your project information and `cd` into it.
 
 ### 2. Start the project
 
@@ -39,7 +38,7 @@ Modify the dependencies of your project to add Shop By Brand extension.
 
 ```
   "dependencies": {
-    "@magento/pwa-buildpack": "~7.0.0",
+    ...
     "@simicart/shopbybrand": "link:./@simicart/shopbybrand"
   },
 ```
