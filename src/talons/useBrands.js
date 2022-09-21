@@ -26,7 +26,7 @@ export const useBrands = props => {
         error: brandsError
     } = useQuery(GET_BRANDS_LIST, {
         variables: {
-            pageSize: 99999,
+            pageSize: 249,
             currentPage: 1,
         }
     });
